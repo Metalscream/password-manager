@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <script src="./libs/html-builder.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <ul class="collection favorite">
+            <li class="collection-item avatar">
+                <img src="./icons/reddit.svg" alt="" class="circle">
+                <div class="row">
+                    <span class="col m3">Service</span>
+                    <span class="col m3">Mail</span>
+                    <span class="col m3">Username</span>
+                    <span class="col m3">Password</span>
+                </div>
+                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+            </li>
+        </ul>
+        <ul class="collection non-favorite">
+
+        </ul>
+        <div class="addWrapper row">
+            <!-- Modal Trigger -->
+            <div class="col l2 offset-s5 offset-m5 offset-l5 center-align">
+                <a class="waves-effect waves-light btn modal-trigger" href="#modal1">+</a>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Add a new service</h4>
+            <div class="row">
+                <div class="input-field col s12">
+                <input id="service" type="text">
+                <label for="service">Service name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                <input id="mail" type="text">
+                <label for="mail">Mail</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                <input id="username" type="text">
+                <label for="username">Username</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                <input id="password" type="password">
+                <label for="password">Password</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="cancelAdding modal-close waves-effect waves-red btn-flat">Cancel</a>
+            <a href="#!" class="addAService modal-close waves-effect waves-green btn-flat">Add</a>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
