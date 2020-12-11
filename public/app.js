@@ -60,6 +60,9 @@ class App{
     _init(){
         M.AutoInit();
 
+        // document.addEventListener("click", ()=>{
+        //     hb.Find(".active").addAttribute("disabled")})
+
         hb.Find(".addAService").AddEventListener("click", (e)=>{
             if(this.modal.validateFields()){
                 this.createItem({
@@ -106,39 +109,54 @@ class App{
         })
     }
 
+    //.SetAttribute("placeholder", (options.service || hb.Find("#service").value))
     createItem(options){
         hb.Find(".non-favorite").AppendChilds(
-            hb.Create("li").AddClassName("collection-item avatar").AppendChilds(
+            hb.Create("li").AddClassName("collection-item avatar service-line").AppendChilds(
                 hb.Create("img").AddClassName("circle").SetSrc("./icons/reddit.svg"),
                 hb.Create("div").AddClassName("row").AppendChilds(
-                    hb.Create("span").AddClassName("col m3 copypaste").Fill(options.service || hb.Find("#service").value).AddEventListener("click", this.onItemClick).AppendChilds(
-                        hb.Create("i").AddClassName("material-icons editButton").Fill("&nbsp edit")
+                    hb.Create("form").AddClassName("col m12 form").AppendChilds(
+                        hb.Create("div").AddClassName("row").AppendChilds(
+                            hb.Create("div").AddClassName("input-field col m3").AppendChilds(
+                                hb.Create("i").AddClassName("material-icons prefix amber-text text-darken-1").Fill("mode_edit").AddEventListener("click", this.editAField),
+                                hb.Create("textarea").AddId("icon-prefix2").AddClassName("copypaste materialize-textarea")
+                                .SetAttribute("unselectable", "on").SetDisable(true).SetValue(options.service || hb.Find("#service").value).AddEventListener("click", this.onItemClick).AppendChilds(
+                                hb.Create("label").SetAttribute("for", "icon_prefix2").Fill("asldkjasldkjasldkj")
+                                ),
+                            ),
+                            hb.Create("span").AddClassName("col m3 copypaste").Fill(options.mail || hb.Find("#mail").value).AddEventListener("click", this.onItemClick).AppendChilds(
+                                hb.Create("i").AddClassName("material-icons editButton").Fill("&nbsp edit")
+                                ),
+                            hb.Create("span").AddClassName("col m3 copypaste").Fill(options.username || hb.Find("#username").value).AddEventListener("click", this.onItemClick).AppendChilds(
+                                hb.Create("i").AddClassName("material-icons &nbsp editButton").Fill("&nbsp edit")
+                                ),
+                            hb.Create("span").AddClassName("col m3 copypaste").Fill(options.password || hb.Find("#password").value).AddEventListener("click", this.onItemClick).AppendChilds
+                            (hb.Create("i").AddClassName("material-icons editButton").Fill("&nbsp edit")
+                            )
                         ),
-                    hb.Create("span").AddClassName("col m3 copypaste").Fill(options.mail || hb.Find("#mail").value).AddEventListener("click", this.onItemClick).AppendChilds(
-                        hb.Create("i").AddClassName("material-icons editButton").Fill("&nbsp edit")
-                        ),
-                    hb.Create("span").AddClassName("col m3 copypaste").Fill(options.username || hb.Find("#username").value).AddEventListener("click", this.onItemClick).AppendChilds(
-                        hb.Create("i").AddClassName("material-icons &nbsp editButton").Fill("&nbsp edit")
-                        ),
-                    hb.Create("span").AddClassName("col m3 copypaste").Fill(options.password || hb.Find("#password").value).AddEventListener("click", this.onItemClick).AppendChilds
-                    (hb.Create("i").AddClassName("material-icons editButton").Fill("&nbsp edit")
+                        hb.Create("div").AddClassName("secondary-content").AppendChilds(
+                            hb.Create("i").AddClassName("material-icons star").Fill("star_border").AddEventListener("click", (e)=>{
+                                this.addingFavorite(e)
+                            }),
+                            hb.Create("i").AddClassName("material-icons").Fill("delete").AddEventListener("click", (e)=>{
+                                e.target.parentElement.parentElement.remove()
+                            })
+                        )
                     )
-                ),
-                hb.Create("div").AddClassName("secondary-content").AppendChilds(
-                    hb.Create("i").AddClassName("material-icons star").Fill("star_border").AddEventListener("click", (e)=>{
-                        this.addingFavorite(e)
-                    }),
-                    hb.Create("i").AddClassName("material-icons").Fill("delete").AddEventListener("click", (e)=>{
-                        e.target.parentElement.parentElement.remove()
-                    })
                 )
             )
         )
         hb.Find(".non-favorite").RemoveClassName("hide")
     }
 
+    editAField(){
+        hb.Find(".materialize-textarea").removeAttribute("disabled")
+        // hb.Find(".materialize-textare").removeAttribute(disabled)
+    }
+
     addingFavorite(e){
-        let element = e.target.parentElement.parentElement
+        console.log(e.target.parentElement.parentElement.parentElement.parentElement);
+        let element = hb.Find('.service-line')
         if(e.target.innerText === "star_border"){
             e.target.Fill("grade")
             e.target.AddClassName("active")
@@ -159,9 +177,11 @@ class App{
     }
 
     onItemClick(e){
-        navigator.clipboard.writeText(e.target.innerText)
+        navigator.clipboard.writeText(e.target.value)
         M.toast({html: 'Copied'})
     }
+
+    
 }
 
 new App()

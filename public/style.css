@@ -1,3 +1,21 @@
+.collection-item{
+    padding: 0px !important;
+    padding-left: 72px !important;
+}
+
+/* .collection{
+    padding: 0px !important;
+    /* padding-left: 20px !important; */
+} */
+
+.material-icons:active {
+    box-shadow: 0 1px 0 0 #ffb300 !important;
+}
+
+.materialize-textarea {
+    margin-bottom: 0px;
+}
+
 .material-icons{
     -webkit-touch-callout: none;
     -webkit-user-select: none; 
@@ -7,9 +25,12 @@
     user-select: none;
     color: darkgrey;
 }
+body{
+    background-color: lightgrey;
+}
 
 .material-icons:hover{
-    color:black
+    color: #ff8f00 !important
 }
 
 .star {
@@ -27,13 +48,37 @@
 }
 
 .copypaste {
-    position: relative;
+    border-bottom: none !important;
+    /* user-select: none !important; */
+    margin-bottom: 0px;
 }
 
-.copypaste:hover > .editButton{
-    opacity: 0.5;
+.copypaste:active,
+.copypaste:focus {
+    /* border-bottom: none !important; */
+    /* box-shadow: 0 0 0 transparent !important; */
 }
 
-.editButton:hover {
-    opacity: 1;
+.copypaste::selection {
+    background-color:  #ffb300
+}
+
+.form{
+    height: 70px;
+}
+
+.circle{
+    margin-top: 16px;
+}
+
+.modal-trigger{
+    background-color: #ffb300
+}
+
+.modal-trigger:hover{
+    background-color: #ff8f00
+}
+
+.collect{
+    padding: none;
 }
